@@ -1,27 +1,41 @@
 package it.polito.tdp.anagrammi.db;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.SQLException;
+
+import com.zaxxer.hikari.HikariDataSource;
 
 public class ConnectDB {
 
-	static private final String jdbcUrl = "jdbc:mysql://localhost/dizionario?user=root&password=corbezzoli95&serverTimezone=Europe/Rome";
-	static private Connection connection = null;
+private static HikariDataSource ds = null;
 
-	public static Connection getConnection() {
+	public static Connection getConnection(){
 
-		try {
-			
-		    connection = DriverManager.getConnection(jdbcUrl);
-			return connection;
+	 String jdbc = "jdbc:mysql://localhost/dizionario";
+	
+	 try{
+ 
+	   if(ds == null){
 
-		} catch (SQLException e) {
+	       ds = new HikariDataSource();
 
-			e.printStackTrace();
-			throw new RuntimeException("Cannot get a connection " + jdbcUrl, e);
-		}
+	       ds.setJdbcUrl(jdbc);
+	       ds.setUsername("root");
+	       ds.setPassword("corbezzoli95");
+	    }
+	
+	    Connection conn = ds.getConnection();
+
+		return conn;
+
+	   
+     	}
+	catch (SQLException e) {
+
+		e.printStackTrace();
+		throw new RuntimeException("Cannot get a connection " + jdbc, e);
 	}
 
+  }
 	
 }

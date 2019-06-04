@@ -22,7 +22,11 @@ public class Model {
 		
 		return soluzioni;
 	}
-
+    /*
+     * Una possibile alternativa consiste nel mandare al DAO una lista di parole,
+     * Corrispondente agli anagrammi che verranno controllati in un unica connessione (?)
+     * 
+     */
 	
 	private void cerca(Parola parziale, int L, List<Character> listIn) {
 		
@@ -43,7 +47,7 @@ public class Model {
 			
 			if(!soluzioni.containsKey(s)) {
 				soluzioni.put(s,dao.isCorrect(s));
-			    System.out.println(s);
+			   // System.out.println(s);
 			}
 			    
 		
