@@ -21,7 +21,7 @@ private static HikariDataSource ds = null;
 
 	       ds.setJdbcUrl(jdbc);
 	       ds.setUsername("root");
-	       ds.setPassword("corbezzoli95");
+	       ds.setPassword("");
 	    }
 	
 	    Connection conn = ds.getConnection();
